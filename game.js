@@ -7,6 +7,7 @@ var userClickedPattern = [];
 var started = false;
 var level = 0;
 
+// Press the key for start game
 $(document).keypress(function() {
   if (!started) {
     $("#level-title").text("Level " + level);
@@ -26,6 +27,7 @@ $(".btn").click(function() {
   checkAnswer(userClickedPattern.length-1);
 });
 
+// Check the answer
 function checkAnswer(currentLevel) {
 
     if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
@@ -47,7 +49,7 @@ function checkAnswer(currentLevel) {
     }
 }
 
-
+// 
 function nextSequence() {
   userClickedPattern = [];
   level++;
@@ -59,19 +61,19 @@ function nextSequence() {
   $("#" + randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
   playSound(randomChosenColour);
 }
-
+// Animation of click and Press button
 function animatePress(currentColor) {
   $("#" + currentColor).addClass("pressed");
   setTimeout(function () {
     $("#" + currentColor).removeClass("pressed");
   }, 100);
 }
-
+// Play Sound
 function playSound(name) {
   var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
 }
-
+// Game Over
 function startOver() {
   level = 0;
   gamePattern = [];
